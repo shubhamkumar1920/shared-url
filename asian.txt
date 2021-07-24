@@ -1,0 +1,62 @@
+html------------------------------------------------------
+Enter block ID: <input type="number" min="1" max="9" id="block_id"></input><br></br>
+    Enter colour: <input type="text" id="colour_id"></input><br></br>
+    <button type="submit" id="change_button" onclick="changeButton()">Submit</button>
+    <button type="reset" id="reset_button" onclick="resetButton()">Reset</button>
+    <div id="1" value="1"></div>
+    <div id="2" value="2"></div>
+    <div id="3" value="3"></div>
+    <div id="4" value="4"></div>
+    <div id="5" value="5"></div>
+    <div id="6" value="6"></div>
+    <div id="7" value="7"></div>
+    <div id="8" value="8"></div>
+    <div id="9" value="9"></div>
+
+
+css------------------------------------------------
+div{
+    background-color: transparent;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+
+javasc-----------------------------------------
+// var but=document.getElementById('change_button');
+// //   console.log(but)
+//   but.addEventListener('click',function(){
+//       resetButton();
+//     var divID=document.getElementById('block_id').value;
+//     var colorName=document.getElementById('colour_id').value;
+//     if(divID!=0){
+//     var divv=document.getElementById(divID);
+//     // console.log(divID)
+  
+//   // console.log(colorName)
+//   divv.style.backgroundColor=colorName;
+//     }
+  
+//   });
+function changeButton(){
+var a= document.getElementById("block_id").value;
+if(a>=1 && a<=9){
+var b= document.getElementById("colour_id").value;
+document.getElementById(a).style.backgroundColor=b;
+}else{
+    alert("Enter between 1-9");
+}
+}
+  function resetButton(){
+//   var allDiv=document.getElementById('div');
+// //   console.log(allDiv)
+//   allDiv.forEach(i => {
+//     i.style.backgroundColor="transparent";
+//   });
+for(var i=1;i<=9;i++){
+   document.getElementById(i).style.backgroundColor="transparent"; 
+    }
+  
+
+}

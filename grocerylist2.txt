@@ -1,0 +1,78 @@
+<!-- Do not edit this you need to use JS to scrap prices and display their sum -->
+    <h1>Grocery List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Title</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Item-1</td>
+                <td data-ns-test="price">100</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Item-2</td>
+                <td data-ns-test="price">200</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Item-3</td>
+                <td data-ns-test="price">2</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Item-4</td>
+                <td data-ns-test="price">1</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onClick='calcTotal()'>Total</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let count=1;
+const table=document.getElementsByTagName("table")[0];
+
+function calcTotal() {
+    if(count>1){
+        table.deleteRow(5);
+    }
+
+    let row=table.insertRow();
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    cell2.setAttribute('data-ns-test', 'grandTotal');
+
+    let sum=0;
+    document
+    .querySelectorAll('[data-ns-test="price"]')
+    .forEach((ele) => sum+=Number(ele.innerHTML));
+
+     
+    
+    cell1.innerText="Grand Total";
+    cell2.innerText=sum; 
+    count++;
+   
+
+    
+
+}

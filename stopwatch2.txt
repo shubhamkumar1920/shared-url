@@ -1,0 +1,101 @@
+<html>
+
+<body>
+	<div>
+		<h1 id="time">00:00:00</h1>
+		<button id="start" class="button">start</button>
+		<button id="pause" class="button">pause</button>
+		<button id="reset" class="button">stop</button>
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+#timedisplay {
+    display: inline;
+}
+.timer {
+    display: inline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var sec = "00";
+var min = "00";
+var hour = "00";
+var pauseCount = 0;
+var setinter
+var time = document.getElementById("time");
+var start = document.getElementById('start');
+var pause = document.getElementById('pause');
+var reset = document.getElementById('reset');
+pause.setAttribute("disabled", "");
+reset.setAttribute("disabled", "");
+
+function timeStart() {
+    let check = parseInt(sec) + 1;
+    if (check < 10) { sec = "0" + check; } else { sec = check; }
+    if (check === 60) {
+        let mincheck = parseInt(min) + 1
+        if (mincheck < 10) { min = "0" + mincheck } else { min = mincheck }
+        sec = "00";
+    }
+    if (parseInt(min) == 60) {
+        let hourcheck = parseInt(hour) + 1;
+        if (hourcheck < 10) { hour = "0" + hourcheck } else { hour = hourcheck }
+        min = "00";
+    }
+    time.innerHTML = hour + ":" + min + ":" + sec;
+}
+start.addEventListener("click", () => {
+    start.disabled = true;
+    pause.removeAttribute("disabled");
+    reset.removeAttribute("disabled");
+    setinter = setInterval(timeStart, 1000);
+
+})
+pause.addEventListener("click", () => {
+    pauseCount++;
+    if (pauseCount % 2 != 0) {
+        clearInterval(setinter);
+        pause.innerHTML = "continue";
+    } else {
+        setinter = setInterval(timeStart, 1000);
+        pause.innerHTML = "pause";
+    }
+})
+reset.addEventListener("click", () => {
+    time.innerHTML = "00:00:00"
+    sec = "00";
+    min = "00";
+    hour = "00";
+    start.disabled = false;
+    pause.disabled = true;
+    reset.disabled = true;
+    pauseCount = 0;
+    clearInterval(setinter);
+    if (pause.innerHTML == "continue") {
+        pause.innerHTML = "pause";
+    }
+})
